@@ -1,0 +1,11 @@
+.album-list {
+    display: flex;
+    justify-content: space-between;
+    li {
+        list-style: none;
+    }
+}
+.album__wapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
