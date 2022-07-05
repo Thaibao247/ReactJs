@@ -1,0 +1,100 @@
+$primary: #11998e;
+$secondary: #38ef7d;
+$white: #fff;
+$gray: #9b9b9b;
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 300px;
+  display: flex;
+
+}
+
+.form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid $gray;
+    outline: 0;
+    font-size: 1.3rem;
+    color: black;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  
+    &::placeholder {
+      color: gray;
+    }
+  
+//     &:placeholder-shown ~ .form__label {
+//       font-size: 1.3rem;
+//       cursor: text;
+//       top: 20px;
+//     }
+//   }
+  
+//   .form__label {
+//     position: absolute;
+//     top: 0;
+//     display: block;
+//     transition: 0.2s;
+//     font-size: 1rem;
+//     color: $gray;
+//   }
+  
+//   .form__field:focus {
+//     ~ .form__label {
+//       position: absolute;
+//       top: 0;
+//       display: block;
+//       transition: 0.2s;
+//       font-size: 1rem;
+//       color: $primary;
+//       font-weight:700;    
+//     }
+//     padding-bottom: 6px;  
+//     font-weight: 700;
+//     border-width: 3px;
+//     border-image: linear-gradient(to right, $primary,$secondary);
+//     border-image-slice: 1;
+//   }
+  /* reset input */
+  .form__field{
+    &:required,&:invalid { box-shadow:none; }
+  }
+  /* demo */
+}
+
+button {
+  }
+  .custom-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+  }
+  
+  /* 1 */
+  .btn-1 {
+    background: rgb(6,14,131);
+    background: linear-gradient(0deg, rgba(6,14,131,1) 0%, rgba(12,25,180,1) 100%);
+    border: none;
+  }
+  .btn-1:hover {
+     background: rgb(0,3,255);
+  background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+  }
+  

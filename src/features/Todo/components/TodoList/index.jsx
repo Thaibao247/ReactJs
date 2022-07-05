@@ -1,31 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.scss'
-import classnames from 'classnames'
+import './styles.scss';
+import classnames from 'classnames';
+import {ThemeContext} from '../../ThemeContext';
+import {useContext} from 'react'
 
 TodoList.propTypes = {
     todoList: PropTypes.array,
-    onTodoClick: PropTypes.func
+    onTodoClick: PropTypes.func,
+    deleteTask: PropTypes.func
 };
 TodoList.defaultProps = {
     todoList: [],
-    onTodoClick: null
+    onTodoClick: null,
+    deleteTask: null
 }
 
-function TodoList({todoList,onTodoClick}) {
-   const HandleTodoClick = (todo,index) => {
-        if(!onTodoClick) return;
+// {todoList,onTodoClick,deleteTask}
+function TodoList() {
 
-        onTodoClick(todo, index)
-   }
+    const todoContext = useContext(ThemeContext);
+
+//    const HandleTodoClick = (todo,index) => {
+//         if(!onTodoClick) return;
+
+//         onTodoClick(todo, index)
+//    }
+
+//     const HandleDeleteItem = (index) => {
+//         if(!deleteTask) return;
+//         deleteTask(index);
+//     }
     return (
-       <ul className="todo__list">
-           {todoList.map((todo, index) => {
-              return  <li key={todo.id} className={classnames({completed: todo.status === 'completed'})}
-              onClick={() => HandleTodoClick(todo, index)}
-              >{todo.title}</li>
-           })}
-       </ul>
+       <div className="todo__list">
+                {todoContext.Todo.map((todo, index) => {
+                    return (  
+                        <div className="list-wrapper">
+                            <p  className={classnames({completed: todo.status === 'completed'})}
+                    onClick={() => todoContext.HandleTodoClick(todo, index)}
+                    >  {todo.title}  </p>
+                    <button className='custom-btn btn-1' onClick={() => {todoContext.deleteTask(index)}}>x</button>
+                        </div>
+                    )
+                })}
+       </div>
     );
 }
 

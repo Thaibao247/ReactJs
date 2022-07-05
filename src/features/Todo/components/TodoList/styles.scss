@@ -1,14 +1,25 @@
 .todo__list {
-    & > li {
-        list-style: none;
-        margin: 20px 0;
-        padding: 10px 20px;
-        cursor: pointer;
-        &.completed {
-            background: rgba(green, .6);
-            text-decoration: line-through;
+    margin-top:30px;
+    .list-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & > p{    
+            list-style: none;
+            width: 300px;
+            // margin:  0;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 3px solid blue;
+            &.completed {
+                background: rgba(red, .6);
+                text-decoration: line-through;
+            }
+        }
+        button{
+           width: 50px;
+            // height: 50px;
+            // margin-top:0;
         }
     }
-
-
 }
