@@ -6,6 +6,7 @@ export const addNewHobby = (hobby) => {
 };
 
 export const setActiveHobby = (hobby) => {
+  console.log(hobby);
   return {
     type: "SET_ACTIVE_HOBBY",
     payload: hobby,
