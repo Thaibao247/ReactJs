@@ -13,7 +13,7 @@ function ProductItem(props) {
   return (
     <Col lg="4">
       <div className="product-item">
-        <Link to="">
+        <Link to={`/shopping/${product.id}`}>
           <img
             className="product-item__image"
             src={
