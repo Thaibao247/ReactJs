@@ -70,7 +70,7 @@ export default function ButtonAppBar() {
         <Toolbar>
           <AcUnitIcon className={classes.menuButton} />
           <Typography variant="h6" className={classes.title}>
-            <Link className={classes.link} to="/home">
+            <Link className={classes.link} to="/shopping">
               TNTB
             </Link>
           </Typography>

@@ -1,46 +1,65 @@
-import React from "react";
-
-import { useSelector, useDispatch } from "react-redux";
-import { addNewHobby, setActiveHobby } from "../../actions/hobby";
-import HobbyList from "../../components/Home/HobbyList";
-
-const randomNumber = () => {
-  return 1000 + Math.trunc(Math.random() * 9000);
-};
-
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col } from "reactstrap";
+import categoryApi from "../../api/categoryApi";
+import LeftCategory from "./component/LeftCategory/LeftCategory";
+import ListProductByCate from "./component/ListProductByCate/ListProductByCate";
+import "./home.scss";
 function Home(props) {
-  const hobbyList = useSelector((state) => state.hobby.list);
-  const activeId = useSelector((state) => state.hobby.activeId);
-  const dispatch = useDispatch();
+  const [listCate, setListCate] = useState([]);
+  const [listProduct, setListProduct] = useState([]);
+  const [categoryId, setCategoryId] = useState(1);
 
-  const handleAddHobbyClick = () => {
-    // Random a hobby object: id + title
-    const newId = randomNumber();
-    const newHobby = {
-      // id: casual.uuid,
-      // title: casual.title,
-      id: newId,
-      title: `Hobby ${newId}`,
-    };
-
-    // Dispatch action to add a new hobby to redux store
-    const action = addNewHobby(newHobby);
-    dispatch(action);
+  const fetchApiCate = async () => {
+    try {
+      const res = await categoryApi.getAll({});
+      if (res) {
+        console.log("====================================");
+        console.log(res);
+        console.log("====================================");
+        setListCate(res);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleHobbyClick = (hobby) => {
-    const action = setActiveHobby(hobby);
-    dispatch(action);
+  const fetchApiProduct = async (categoryId) => {
+    try {
+      const res = await categoryApi.get(categoryId);
+      if (res && res.products) {
+        console.log(res);
+        setListProduct(res.products);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  useEffect(() => {
+    fetchApiCate();
+    fetchApiProduct(categoryId);
+  }, [categoryId]);
+
+  const handleClickGetCateId = (id) => {
+    setCategoryId(id);
+  };
+  console.log(listProduct);
+  console.log("categoryId: ", categoryId);
   return (
-    <div>
-      <h1>Hello TNTB</h1>
-      <button onClick={handleAddHobbyClick}>Random Hobby</button>
-      <HobbyList
-        activeId={activeId}
-        hobbyList={hobbyList}
-        onHobbyClick={handleHobbyClick}
-      />
+    <div className="shopping">
+      <Container fluid>
+        <Row>
+          <Col lg="2" className="justify-content-center align-item-center">
+            <LeftCategory
+              onClickGetCateId={handleClickGetCateId}
+              listCate={listCate}
+            />
+          </Col>
+          <Col lg="10">
+            <ListProductByCate listProduct={listProduct} />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

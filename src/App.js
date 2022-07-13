@@ -4,15 +4,17 @@ import Login from "./features/Login";
 import Menu from "./features/Menu";
 import Header from "./components/header";
 import TodoFeature from "./features/Todo";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import AlbumFeature from "./features/Album";
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
+import Shopping from "./pages";
 function App() {
   return (
     <div className="App">
       <Header />
       <Switch>
-        <Route path="/home" component={Home} exact />
+        <Redirect exact from="/" to="/shopping" />
+        <Route path="/shopping" component={Shopping} />
         <Route path="/menus" component={Menu} exact />
         <Route path="/todos" component={TodoFeature} />
         <Route path="/albums" component={AlbumFeature} />
