@@ -35,6 +35,9 @@ function Home(props) {
 
   useEffect(() => {
     fetchApiCate();
+  }, []);
+
+  useEffect(() => {
     fetchApiProduct(categoryId);
   }, [categoryId]);
 

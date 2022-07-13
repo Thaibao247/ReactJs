@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Row, Col } from "reactstrap";
 import productApi from "../../api/productApi";
 import ProductById from "./component/ProductById/ProductById";
 import "./styles.scss";
