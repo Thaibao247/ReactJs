@@ -24,7 +24,7 @@ function Detail(props) {
 
   useEffect(() => {
     fetchApiProductById(id);
-  }, []);
+  });
 
   console.log("PRODUCT: ", product);
   return (
