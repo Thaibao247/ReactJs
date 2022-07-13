@@ -1,13 +1,7 @@
 import { useState, useReducer, createContext } from "react";
 
 const ThemeContext = createContext();
-// const initStateTodo = [
-//   {
-//     id: 0,
-//     name: "hello",
-//     status: "new",
-//   },
-// ];
+
 function ThemeProvider({ children }) {
   const [Todo, setTodo] = useState([]);
   const [filterTodo, setFilterTodo] = useState("all");
@@ -84,6 +78,33 @@ function ThemeProvider({ children }) {
   const todoFilter = Todo.filter(
     (data) => filterTodo === "all" || filterTodo === data.status
   );
+
+  //Create Cart
+  const dataCart = JSON.parse(localStorage.getItem("data-cart"));
+  const [totalCart, setTotalCart] = useState(dataCart ? dataCart.length : 0);
+  const [listCart, setListCart] = useState(dataCart ? dataCart : []);
+
+  const handleClickTotalCart = (values) => {
+    console.log("aaaa");
+
+    const newListCart = [...listCart, values];
+    localStorage.setItem("data-cart", JSON.stringify(newListCart));
+    setListCart(newListCart);
+    setTotalCart(newListCart.length);
+  };
+
+  const handleClickDeleteCart = (index) => {
+    console.log(index);
+
+    //const filterCart = listCart.splice(index, 1);
+    //console.log(filterCart);
+    listCart.splice(index, 1);
+    localStorage.setItem("data-cart", JSON.stringify(listCart));
+    setListCart(listCart);
+    setTotalCart(listCart.length);
+  };
+
+  //localStorage
   //Các giá trị trả ra cho các component sử dụng
   const value = {
     Todo,
@@ -93,6 +114,10 @@ function ThemeProvider({ children }) {
     HandleAddTodo,
     handleFilter,
     todoFilter,
+    totalCart,
+    listCart,
+    handleClickTotalCart,
+    handleClickDeleteCart,
   };
 
   return (

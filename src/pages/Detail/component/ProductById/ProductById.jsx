@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Container, Row, Col } from "reactstrap";
+import { ThemeContext } from "../../../../features/Todo/ThemeContext";
 
 function ProductById(props) {
   const { product } = props;
+  const context = useContext(ThemeContext);
   return (
     <Container>
       <div className="product">
@@ -27,7 +29,9 @@ function ProductById(props) {
               <span className="">{product.salePrice}vnd</span>
               <p>Số lượng: </p>
               <button>Thêm vào giỏ</button>
-              <button>Mua ngay</button>
+              <button onClick={() => context.handleClickTotalCart(product)}>
+                Mua ngay
+              </button>
             </div>
           </Col>
         </Row>

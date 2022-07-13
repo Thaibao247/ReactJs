@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -11,6 +11,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Register from "../../features/Auth/components/Register";
+import { ThemeContext } from "../../features/Todo/ThemeContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const pages = [
+  {
+    name: "cart",
+    url: "/cart",
+  },
   {
     name: "Menu",
     url: "/menus",
@@ -52,6 +57,8 @@ const pages = [
 ];
 
 export default function ButtonAppBar() {
+  const context = useContext(ThemeContext);
+
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
@@ -74,6 +81,7 @@ export default function ButtonAppBar() {
               TNTB
             </Link>
           </Typography>
+          {context.totalCart}
           {pages.map((item) => (
             <NavLink to={item.url} className={classes.link}>
               {" "}

@@ -8,6 +8,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import AlbumFeature from "./features/Album";
 // import Home from "./pages/Home";
 import Shopping from "./pages";
+import Cart from "./pages/Cart/Cart";
 function App() {
   return (
     <div className="App">
@@ -15,6 +16,7 @@ function App() {
       <Switch>
         <Redirect exact from="/" to="/shopping" />
         <Route path="/shopping" component={Shopping} />
+        <Route path="/cart" component={Cart} />
         <Route path="/menus" component={Menu} exact />
         <Route path="/todos" component={TodoFeature} />
         <Route path="/albums" component={AlbumFeature} />
