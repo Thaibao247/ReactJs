@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Row, Col } from "reactstrap";
+import { Row } from "reactstrap";
 import ProductItem from "../ProductItem/ProductItem";
 function ListProductByCate(props) {
   const { listProduct } = props;
